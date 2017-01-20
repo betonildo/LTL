@@ -1,19 +1,21 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
+#include <Allocator.h>
 #include <CustomTypes.h>
 
-template<class T, class Allocator>
+template<class T>
 class Array {
 
     T** array;
     U64 count;
-    Allocator allocator;
+    Allocator* allocator;
 
 public:
 
-    Array(size_t count) {
-        array = (T**)allocator.allocate(sizeof(T) * count);
+    Array(size_t count, Allocator* allocator) {
+        this->allocator = allocator;
+        array = (T**)this->allocator->allocate(sizeof(T) * count);
         this->count = count;
     }
 
@@ -23,6 +25,11 @@ public:
 
     T* operator&() {
         return array[0];
+    }
+
+    void setAllocator(Allocator* allocator) {
+        this->allocator = allocator;
+        array = (T**)this->allocator->allocate(sizeof(T) * count);
     }
 };
 
