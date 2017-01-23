@@ -15,3 +15,8 @@ set(${PROJECT_NAME}_INCLUDE_DIRS
     ${PROJECT_SOURCE_DIR}/include
     ${UnityDefinitions_INCLUDE_DIRS}
     CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)
+
+set(${PROJECT_NAME}_INCLUDE_UNITS
+    ${INCLUDE_UNITS}
+    ${Memallocator_INCLUDE_UNITS}
+    CACHE INTERNAL "${PROJECT_NAME}: Include Directories" FORCE)
